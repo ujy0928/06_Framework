@@ -8,8 +8,12 @@
 </head>
 <body>
   <h1>Todo List</h1>
+  
+  <hr>
+  
+  <h3><a href="/ajax/main">TodoList - Ajax 버전</a></h3>
 
-  <!--<p th:text="${testTitle}">todoNo가 1인 할 일 제목 조회</p>-->
+  <p th:text="${testTitle}">todoNo가 1인 할 일 제목 조회</p>
 
   <form action="/todo/add" method="POST">
     <h4>할 일 추가</h4>
@@ -50,7 +54,7 @@
         <td th:text="${iterStat.count}">행 번호</td>
         <td th:text="*{todoNo}"></td>
         <td>
-          <a href="#" th:text="*{todoTitle}">할 일 제목</a>
+          <a th:href="@{/todo/detail(todoNo=*{todoNo})}" th:text="*{todoTitle}">할 일 제목</a>
         </td>
         <td th:text="*{complete}">완료 여부(Y/N)</td>
         <td th:text="*{regDate}">등록일</td>
