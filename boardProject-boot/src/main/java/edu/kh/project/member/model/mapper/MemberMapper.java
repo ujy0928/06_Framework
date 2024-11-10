@@ -19,4 +19,15 @@ public interface MemberMapper {
 	 */
 	int checkEmail(String memberEmail);
 
+	/** 닉네임 중복검사
+	 * @return
+	 */
+	int checkNickname(String memberNickname);
+
+	/** 회원 가입 SQL 실행
+	 * @param inputMember
+	 * @return result
+	 */
+	int signup(Member inputMember);
+
 }
