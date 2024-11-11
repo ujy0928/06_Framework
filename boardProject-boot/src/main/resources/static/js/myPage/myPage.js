@@ -212,8 +212,15 @@ const deleteImage = document.getElementById("deleteImage");  // 이미지 삭제
 const MAX_SIZE = 1024 * 1024 * 5;  // 최대 파일 크기 설정 (5MB)
 
 
+// 기존코드(myPage-info.html 외에도 문제가 발생하지 않도록 예외처리 해둔 부분!)
+const searchAddress = document.querySelector("#searchAddress");
 
-document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode);
+if(searchAddress != null) {
+    searchAddress.addEventListener("click", execDaumPostcode);
+}
+
+// 기존코드(myPage-info.html 외에는 문제가 발생할 수 있는 코드!)
+//document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode);
 
 // 다음 주소 API
 function execDaumPostcode() {
