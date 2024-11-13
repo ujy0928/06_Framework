@@ -101,7 +101,10 @@ COMMENT ON COLUMN "UPLOAD_FILE"."FILE_UPLOAD_DATE" IS '업로드 날짜';
 
 COMMENT ON COLUMN "UPLOAD_FILE"."MEMBER_NO" IS '업로드한 회원 번호';
 
+-- 시퀀스 SQL_FILE_NO 생성
+CREATE SEQUENCE SEQ_FILE_NO NOCACHE;
 
+SELECT * FROM "UPLOAD_FILE";
 ------------------------------------------
 
 /* 게시판 테이블 생성 */
