@@ -87,7 +87,9 @@
                         </div>
                     </div>
                 </th:block>
-                
+                <!-- 썸네일 있다면 start = 1(controller에서 req)
+					썸네일 없다면 start = 0
+				-->
                 <th:block th:if="${#lists.size(board.imageList) > start}">
 
                     <h5>업로드 이미지</h5>  

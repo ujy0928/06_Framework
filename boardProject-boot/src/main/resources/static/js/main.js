@@ -80,3 +80,83 @@ if (loginForm != null) {
   });
 
 }
+
+
+// 회원 목록 조회(비동기)
+const selectMemberList = document.querySelector("#selectMemberList");
+const tbody = document.querySelector("#memberList");
+selectMemberList.addEventListener("click", ()=>{
+  fetch("/main/list")
+  .then(resp => resp.json())
+  .then(MemberList => {
+    //console.log(MemberList);
+    tbody.innerHTML = "";
+    for(let member of MemberList) {
+      const tr = document.createElement("tr");
+
+      const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl']
+      for(let key of arr) {
+        const td = document.createElement("td");
+
+        td.innerText = member[key];
+        tr.append(td);
+      }
+
+      tbody.append(tr);
+    }
+  });
+});
+
+
+// 특정회원 비밀번호 초기화
+const resetPw = document.querySelector("#resetPw");
+resetPw.addEventListener("click", () => {
+  const param = document.querySelector("#resetMemberNo").value;
+
+  if(param.trim().length == 0) {
+    alert("회원번호를 입력해 주세요");
+    return;
+  }
+
+  fetch("/main/pwReset", {
+    method : "PUT",
+    headers : {"Content-Type" : "application/json"},
+    body : param
+  })
+  .then(resp => resp.text())
+  .then(result => {
+    if(result > 0) {
+      alert("비밀번호가 초기화 되었습니다");
+    } else {
+      alert("비밀번호 초기화 실패..")
+    }
+  });
+});
+
+
+// 특정 회원 탈퇴 복구
+const restorationBtn = document.querySelector("#restorationBtn");
+const restorationMemberNo = document.querySelector("#restorationMemberNo");
+restorationBtn.addEventListener("click", () => {
+
+  const memberNo = restorationMemberNo.value;
+  
+  if(memberNo.trim().length == 0) {
+    alert("회원번호를 입력해 주세요");
+    return;
+  }
+
+  fetch("/main/restore", {
+    method : "PUT",
+    headers : {"Content-Type" : "application/json"},
+    body : memberNo
+  })
+  .then(resp => resp.text())
+  .then(result => {
+    if(result > 0) {
+      alert("회원 탈퇴가 복구 되었습니다");
+    } else {
+      alert("회원 탈퇴 복구 실패..")
+    }
+  });
+});

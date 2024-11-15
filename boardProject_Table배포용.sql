@@ -338,6 +338,7 @@ INSERT INTO "BOARD_TYPE" VALUES(SEQ_BOARD_CODE.NEXTVAL, '자유 게시판');
 
 COMMIT;
 
+SELECT * FROM "BOARD_TYPE";
 ---------------------------------------------
 /* 게시글 번호 시퀀스 생성 */
 CREATE SEQUENCE SEQ_BOARD_NO NOCACHE;
@@ -371,7 +372,7 @@ FROM "BOARD"
 GROUP BY BOARD_CODE
 ORDER BY BOARD_CODE;
 
-
+SELECT * FROM "BOARD";
 
 ---------------------------------------------------
 -- 부모 댓글 번호 NULL 허용
