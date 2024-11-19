@@ -26,7 +26,7 @@ const getCookie = (key) => {
     obj[k] = v;
   }
 
-  console.log(obj);
+  //console.log(obj);
 
   return obj[key];
 

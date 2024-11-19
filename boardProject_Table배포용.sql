@@ -421,28 +421,29 @@ CREATE SEQUENCE SEQ_IMG_NO NOCACHE;
 
 /* BOARD_IMG 테이블에 샘플 데이터 삽입 */
 INSERT INTO "BOARD_IMG" VALUES(
-	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본1.jpg', 'test1.jpg', 0, 1998
+	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본1.jpg', 'test1.jpg', 0, 1999
 );
 
 INSERT INTO "BOARD_IMG" VALUES(
-	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본2.jpg', 'test2.jpg', 1, 1998
+	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본2.jpg', 'test2.jpg', 1, 1999
 );
 
 INSERT INTO "BOARD_IMG" VALUES(
-	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본3.jpg', 'test3.jpg', 2, 1998
+	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본3.jpg', 'test3.jpg', 2, 1999
 );
 
 INSERT INTO "BOARD_IMG" VALUES(
-	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본4.jpg', 'test4.jpg', 3, 1998
+	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본4.jpg', 'test4.jpg', 3, 1999
 );
 
 INSERT INTO "BOARD_IMG" VALUES(
-	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본5.jpg', 'test5.jpg', 4, 1998
+	SEQ_IMG_NO.NEXTVAL, '/images/board/', '원본5.jpg', 'test5.jpg', 4, 1999
 );
 
 
 COMMIT;
 
+SELECT * FROM "BOARD_IMG";
 
 -------------------------------------------------------
 
@@ -453,7 +454,16 @@ VALUES(1, 1998); -- 1번 회원이 1998번 글에 좋아요를 클릭함
 COMMIT;
 
 ----------------------------------------------------------
+INSERT INTO "BOARD_IMG" 
+(
+	SELECT NEXT_IMG_NO(), '경로1', '원본1', '변경1', 1, 2001 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로2', '원본2', '변경2', 1, 2001 FROM DUAL
+	UNION
+	SELECT NEXT_IMG_NO(), '경로3', '원본3', '변경3', 1, 2001 FROM DUAL
+);
 
+SELECT * FROM "BOARD_IMG";
 -- SEQ_IMG_NO 시퀀스의 다음 값을 반환하는 함수 생성
 
 -- 전체 드래그 ALT+X
@@ -470,7 +480,7 @@ BEGIN
 	RETURN IMG_NO;
 END;
 -- 여기까지 긁기
-
+SELECT NEXT_IMG_NO() FROM DUAL;
 
 
 
