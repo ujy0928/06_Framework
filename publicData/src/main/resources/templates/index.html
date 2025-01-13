@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>노선별로 경유하는 정류장의 목록(Java <-> OpenAPI)</h2>
+
+	<button id="btn1">정류소 목록 조회</button>
+	<br><br>
+	<table id="resultTable" border="1">
+		<thead id="resultHead">
+			<tr>
+				<th>노선 ID</th>
+				<th>정류소ID</th>
+				<th>정류소명</th>
+				<th>정류소번호</th>
+				<th>정류소순번</th>
+			</tr>
+		</thead>
+		<tbody id="resultBody">
+
+		</tbody>
+	</table>
+
+	<hr>
+
+  <script>
+    const btn = document.getElementById("btn1");
+    const resultBody = document.getElementById("resultBody");
+
+    btn.addEventListener("click", () => {
+      fetch("/busInfo")
+      .then(res => res.json())
+      .then(data => {
+        //console.log(data);
+        const jsonData = data.response.body.items.item;
+        console.log(jsonData);
+
+        for(let i in jsonData) {
+          let item = jsonData[i];
+
+          const row = document.createElement("tr");
+          // 노선 ID
+          const routeid = document.createElement("td");
+          routeid.textContent = item.routeid;
+          row.appendChild(routeid);
+          
+
+          // 정류소 ID
+          const busNodeId = document.createElement("td");
+          busNodeId.textContent = item.nodeid;
+          row.appendChild(busNodeId);
+
+          // 정류소명
+          const nodenm = document.createElement("td");
+          nodenm.textContent = item.nodenm;
+          row.appendChild(nodenm);
+
+          // 정류소번호
+          const nodeno = document.createElement("td");
+          nodeno.textContent = item.nodeno;
+          row.appendChild(nodeno);
+
+          // 정류소순번
+          const nodeord = document.createElement("td");
+          nodeord.textContent = item.nodeord;
+          row.appendChild(nodeord);
+
+          resultBody.appendChild(row);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

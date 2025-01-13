@@ -22,6 +22,7 @@ public class MainServiceImpl implements MainService{
 	private final BCryptPasswordEncoder bcrypt;
 
 	// 멤버 리스트 조회
+	@Transactional
 	@Override
 	public List<Member> selectMemberList() {
 		
